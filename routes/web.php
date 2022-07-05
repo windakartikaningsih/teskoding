@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SaldoController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\PembayaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,13 @@ Route::prefix('transaksi')->group(function(){
 Route::post('prosesAddTransaksi', [TransaksiController::class, 'prosesAddTransaksi'])->name('prosesAddTransaksi');
 Route::post('prosesUpdateTransaksi', [TransaksiController::class, 'prosesUpdateTransaksi'])->name('prosesUpdateTransaksi');
 Route::get('/prosesDeleteTransaksi/{no}', [TransaksiController::class, 'prosesDeleteTransaksi'])->name('prosesDeleteTransaksi');
+
+// ================================ Pembayaran Routing ================================ //
+Route::prefix('pembayaran')->group(function(){
+    Route::get('list', [PembayaranController::class, 'getListPembayaran'])->name('getListPembayaran');
+    Route::get('formAdd', [PembayaranController::class, 'FormAddPembayaran'])->name('FormAddPembayaran');
+    Route::get('formUpdate/{id}', [PembayaranController::class, 'formUpdatePembayaran'])->name('formUpdatePembayaran');
+});
+Route::post('prosesAddPembayaran', [PembayaranController::class, 'prosesAddPembayaran'])->name('prosesAddPembayaran');
+Route::post('prosesUpdatePembayaran', [PembayaranController::class, 'prosesUpdatePembayaran'])->name('prosesUpdatePembayaran');
+Route::get('/prosesDeletePembayaran/{id}', [PembayaranController::class, 'prosesDeletePembayaran'])->name('prosesDeletePembayaran');
